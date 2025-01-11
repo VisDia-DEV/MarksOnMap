@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.css"
+  />
+  <link rel="stylesheet" href="adminstyles.css">
+</head>
+<body>
+  <header>
+    <h2>MarkOnMap Админ </h2>
+  </header>
+  <div class="top-buttons">
+    <button id="open-sidebar" onclick="toggleSidebar()">☰</button>
+    <button id="exit-button" onclick="location.href='index.html'">Выйти</button>
+  </div>
+  <div id="sidebar" class="closed">
+    <div class="sidebar-header">Добавленные метки</div>
+    <div id="marker-list"></div>
+  </div>
+  <div id="map"></div>
+
+  <!-- Модальное окно подтверждения -->
+  <div id="confirm-modal" class="modal">
+    <div class="modal-content">
+      <h3>Вы действительно хотите удалить данную метку?</h3>
+      <button class="confirm-btn" onclick="confirmDelete()">Удалить</button>
+      <button class="cancel-btn" onclick="cancelDelete()">Отмена</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

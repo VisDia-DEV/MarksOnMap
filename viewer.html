@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Просмотр меток</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.css"
+  />
+  <link rel="stylesheet" href="viewstyles.css">
+</head>
+<body>
+  <header>
+    <h2>MarkOnMap Просмотр меток </h2>
+    <div class="header-buttons">
+      <button class="refresh-button" onclick="loadMarkers()">Обновить</button>
+      <button class="exit-button" onclick="location.href='index.html'">Выйти</button>
+    </div>
+  </header>
+  <div class="card-container" id="marker-list"></div>
+
+  <div class="popup-overlay" id="delete-popup">
+    <div class="popup">
+      <h3>Вы уверены, что хотите удалить эту метку?</h3>
+      <div class="popup-buttons">
+        <button class="confirm" onclick="confirmDelete()">Удалить</button>
+        <button class="cancel" onclick="closePopup()">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/leaflet.js"></script>
+  <script>
+    const markerList = document.getElementById("marker-list");
+    const deletePopup = document.getElementById("delete-popup");
+    let markerToDelete = null; // Сохранение id метки для удаления
+    const maps = {}; // Для отслеживания активных мини-карт
+
+    function loadMarkers() {
+      const markers = JSON.parse(localStorage.getItem("markers")) || [];
+      renderMarkers(markers);
+    }
+
+    function renderMarkers(markers) {
+      markerList.innerHTML = "";
+      markers.forEach((marker, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <img 
+            src="${marker.photos.length ? marker.photos[0] : 'https://via.placeholder.com/300x200'}" 
+            alt="Фото" 
+            class="card-image"
+          />
+          <div class="card-content">
+            <h3>Метка №${index + 1}</h3>
+            <p><strong>Добавлено:</strong> ${marker.timestamp}</p>
+            
+            <p><strong>Получатель:</strong> ${marker.recipient || "Не указано"}</p>
+            <p><strong>ФИО:</strong> ${marker.fullName || "Не указано"}</p>
+            <p><strong>Описание:</strong> ${marker.description || "Нет описания"}</p>
+            <p><strong>Телефон:</strong> ${
+              marker.phone
+                ? `<a href="tel:${marker.phone}" class="phone-link">${marker.phone}</a>`
+                : "Не указан"
+            }</p>
+            <div class="button-group">
+              <button class="map-button show-map" onclick="showMiniMap(${index})">Показать</button>
+              <button class="map-button close-map" onclick="closeMiniMap(${index})">Закрыть</button>
+              <button class="delete-button" onclick="openPopup(${marker.id})">Удалить</button>
+            </div>
+            <div id="mini-map-${index}" class="mini-map"></div>
+          </div>
+        `;
+        markerList.appendChild(card);
+      });
+    }
+
+    function openPopup(markerId) {
+      markerToDelete = markerId; // Сохраняем id метки для последующего удаления
+      deletePopup.classList.add("active");
+    }
+
+    function closePopup() {
+      markerToDelete = null;
+      deletePopup.classList.remove("active");
+    }
+
+    function confirmDelete() {
+      if (markerToDelete !== null) {
+        let markers = JSON.parse(localStorage.getItem("markers")) || [];
+        markers = markers.filter((marker) => marker.id !== markerToDelete);
+        localStorage.setItem("markers", JSON.stringify(markers));
+        loadMarkers();
+        closePopup();
+      }
+    }
+
+    function showMiniMap(index) {
+      const miniMapContainer = document.getElementById(`mini-map-${index}`);
+      const markers = JSON.parse(localStorage.getItem("markers")) || [];
+      const coords = markers[index].coords;
+
+      if (maps[index]) {
+        maps[index].remove();
+        delete maps[index];
+      }
+
+      miniMapContainer.style.display = "block";
+
+      const miniMap = L.map(miniMapContainer, {
+        zoomControl: false,
+        attributionControl: false,
+      }).setView(coords, 14);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(miniMap);
+
+      L.marker(coords).addTo(miniMap);
+      maps[index] = miniMap;
+    }
+
+    function closeMiniMap(index) {
+      const miniMapContainer = document.getElementById(`mini-map-${index}`);
+      miniMapContainer.style.display = "none";
+
+      if (maps[index]) {
+        maps[index].remove();
+        delete maps[index];
+      }
+
+      miniMapContainer.innerHTML = "";
+    }
+
+    loadMarkers();
+  </script>
+</body>
+</html>

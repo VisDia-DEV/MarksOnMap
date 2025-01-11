@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarkOnMap</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">MarkOnMap</div>
+        <a href="#" class="cta">Powered By UB</a>
+    </header>
+
+    <div class="hero">
+        <h1>MarkOnMap</h1>
+
+        <div class="button-container">
+            <button onclick="location.href='admin.html'">Поставить метку</button>
+            <button onclick="location.href='viewer.html'">Просмотр меток</button>
+        </div>
+    </div>
+
+    <footer>
+  &copy; 2025 MarkOnMap. Все права защищены. 
+  <a href="private.html" id="privacy-policy">Privacy Policy</a>
+</footer>
+
+    <!-- Всплывающее сообщение -->
+    <div id="popup-message" class="popup hidden">
+        <div class="popup-content">
+            <h2>Поздравляем!</h2>
+            <p>Вы нашли пасхалку!</p>
+            <button class="close-btn" onclick="closePopup()">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        let sequence = "";
+
+        // Функция для проверки последовательности
+        function checkSequence() {
+            const targetSequence = "   12345   "; // Целевая последовательность
+            if (sequence.includes(targetSequence)) {
+                showPopup(); // Показываем сообщение
+                sequence = ""; // Сбрасываем последовательность
+            }
+        }
+
+        // Слушатель события нажатия клавиш
+        document.addEventListener("keydown", (event) => {
+            sequence += event.key; // Добавляем нажатую клавишу в последовательность
+
+            // Ограничиваем длину строки, чтобы она не росла бесконечно
+            if (sequence.length > 20) {
+                sequence = sequence.slice(-20);
+            }
+
+            // Проверяем последовательность
+            checkSequence();
+        });
+
+        // Функция для отображения всплывающего сообщения
+        function showPopup() {
+            const popup = document.getElementById("popup-message");
+            popup.classList.remove("hidden");
+        }
+
+        // Функция для закрытия всплывающего сообщения
+        function closePopup() {
+            const popup = document.getElementById("popup-message");
+            popup.classList.add("hidden");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: #fff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.header-buttons button {
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.refresh-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.refresh-button:hover {
+  background-color: #218838;
+}
+
+.exit-button {
+  background-color: #ff4757;
+  color: white;
+}
+
+.exit-button:hover {
+  background-color: #e84141;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  width: 300px;
+  background: white;
+  color: black;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  max-width: 100%;
+  max-height: 200px;
+  display: block;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.card-content p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.map-button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.show-map {
+  background-color: #007bff;
+  color: white;
+}
+
+.show-map:hover {
+  background-color: #0056b3;
+}
+
+.close-map {
+  background-color: #ffc107;
+  color: black;
+}
+
+.close-map:hover {
+  background-color: #e0a800;
+}
+
+.mini-map {
+  width: 100%;
+  height: 200px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  display: none;
+}
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Масштабирует изображение, сохраняя пропорции */
+  object-position: center; /* Центрирует изображение */
+  border-radius: 5px; /* Радиус скругления углов */
+}
+.phone-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.phone-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+.delete-button {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #e84141;
+}
+
+.popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .popup-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .popup h3 {
+      margin: 0 0 20px;
+    }
+
+    .popup-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .popup-buttons button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .popup-buttons .confirm {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .popup-buttons .confirm:hover {
+      background-color: #218838;
+    }
+
+    .popup-buttons .cancel {
+      background-color: #ff4757;
+      color: white;
+    }
+
+    .popup-buttons .cancel:hover {
+      background-color: #e84141;
+    }
+    .photo-viewer {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .photo-nav {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .photo-nav:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .card-image {
+      max-width: 100%;
+      max-height: 200px;
+      display: block;
+      object-fit: cover;
+      border-radius: 5px;
+    }

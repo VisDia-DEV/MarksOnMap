@@ -1,0 +1,66 @@
+/* private.css */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 800px; /* Максимальная ширина текста */
+    margin: 0 auto; /* Центровка блока */
+    padding: 20px; /* Внутренние отступы */
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p, li {
+    margin-bottom: 15px;
+}
+
+ul, ol {
+    margin-left: 20px; /* Отступ списков */
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+strong {
+    color: #000;
+}
+
+em {
+    color: #7f8c8d;
+}
+
+.header-logo {
+    display: block;
+    margin: 20px auto;
+    width: 150px; /* Ширина логотипа */
+    height: auto;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: #7f8c8d;
+}

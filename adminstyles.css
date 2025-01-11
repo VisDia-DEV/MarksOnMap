@@ -1,0 +1,327 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+}
+
+header button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0056b3;
+  color: white;
+  cursor: pointer;
+}
+
+header button:hover {
+  background-color: #004494;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+#sidebar.open {
+  left: 0;
+}
+#exit-button{
+  position: fixed;
+  top: 100px;
+  right: 15px;
+  padding: 20px;
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#exit-button:hover {
+  background-color: deeppink;
+}
+#open-sidebar {
+  position: fixed;
+  top: 200px;
+  right: 15px;
+  padding: 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+#open-sidebar:hover {
+  background-color: #0056b3;
+}
+
+.marker-item {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.marker-photos img {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+#map {
+  height: 100vh;
+  margin-left: 0;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+#map.shrinked {
+  margin-left: 300px;
+}
+
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.popup-form label {
+  font-weight: bold;
+}
+
+.popup-form input,
+.popup-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.popup-form textarea {
+  resize: none;
+}
+
+.popup-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.popup-form button:hover {
+  background-color: #0056b3;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.modal-content h3 {
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-content .confirm-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.modal-content .cancel-btn {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+.modal-content .confirm-btn:hover {
+  background-color: #c0392b;
+}
+
+.modal-content .cancel-btn:hover {
+  background-color: #596e79;
+}
+.camera-button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.camera-button:hover {
+  background-color: #218838;
+}
+#video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+#video-modal .modal-content {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#camera-stream {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.camera-capture,
+.camera-close {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.camera-capture {
+  background-color: #28a745;
+  color: white;
+}
+
+.camera-close {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.camera-capture:hover {
+  background-color: #218838;
+}
+
+.camera-close:hover {
+  background-color: #c0392b;
+}
+.top-buttons {
+  position: fixed;
+  top: 150px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+  z-index: 1100;
+}
+.marker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-marker-btn {
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.delete-marker-btn:hover {
+  background: darkred;
+}
+
+.photo-container {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+
+.photo-container img {
+  max-width: 100px;
+  border-radius: 5px;
+  display: block;
+}
+
+.delete-photo-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.delete-photo-btn:hover {
+  background: darkred;
+}
